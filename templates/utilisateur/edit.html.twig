@@ -1,0 +1,16 @@
+
+
+{% block body %}
+   <div style="background-color: pink; padding: 20px;">
+     <h1 style="text-align: center; text-decoration: underline;">Modifier un Utilisateur</h1>
+    <p>Veuillez mettre à jour les informations ci-dessous :</p>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+       
+    {{ form_end(form) }}
+
+    <a href="{{ path('afficher_utilisateur') }}">Retour à la liste des utilisateurs</a>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+
+
+
+     <h1 style="text-align: center; text-decoration: underline;">Liste des Utilisateurs</h1>
+
+       <a href="{{ path('add_utilisateur') }}" class="btn" style="margin-bottom: 20px;">Ajouter un Utilisateur</a>
+
+
+
+    <table class="table" style="background-color: #f8d7da; border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #000;">Nom</th>
+                <th style="border: 1px solid #000;">Email</th>
+                <th style="border: 1px solid #000;">Type</th>
+                <th style="border: 1px solid #000;">Niveau</th>
+                <th style="border: 1px solid #000;">Matière</th>
+                <th style="border: 1px solid #000;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for utilisateur in utilisateurs %}
+                <tr>
+                    <td style="border: 1px solid #000;">{{ utilisateur.nom }}</td>
+                    <td style="border: 1px solid #000;">{{ utilisateur.email }}</td>
+                    <td style="border: 1px solid #000;">{{ utilisateur.type }}</td>
+                    <td style="border: 1px solid #000;">{{ utilisateur.niveau }}</td>
+                    <td style="border: 1px solid #000;">{{ utilisateur.matiere }}</td>
+                    <td style="border: 1px solid #000;">
+                        <a href="{{ path('edit_utilisateur', {'id': utilisateur.id}) }}" class="btn btn-warning">Modifier</a>
+                        <a href="{{ path('delete_utilisateur', {'id': utilisateur.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" style="border: 1px solid #000;">Aucun utilisateur trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
