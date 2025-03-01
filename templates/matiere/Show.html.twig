@@ -56,6 +56,18 @@
         .btn-ajouter:hover {
             background-color: #218838;
         }
+        .btn-chapitres {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-chapitres:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -79,7 +91,8 @@
             <td>{{ Matieres.modeDevaluation }}</td>
             <td>
                 <a href="{{ path('app_editmatiere', {'id': Matieres.id}) }}">Éditer</a> |
-                <a href="{{ path('app_deletematiere', {'id': Matieres.id}) }}">Supprimer</a>
+                <a href="{{ path('app_deletematiere', {'id': Matieres.id}) }}">Supprimer</a> |
+                <a href="{{ path('app_affichechap', {'id': Matieres.id}) }}" class="btn-chapitres">Voir les chapitres</a>
             </td>
         </tr>
         {% endfor %}
