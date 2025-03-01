@@ -1,40 +1,37 @@
+<h1 style="text-align: center; text-decoration: underline;">Liste des Utilisateurs</h1>
 
+<a href="{{ path('add_utilisateur') }}" class="btn" style="background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-bottom: 20px; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#218838'" onmouseout="this.style.backgroundColor='#28a745'">
+    Ajouter un Utilisateur
+</a>
 
-
-     <h1 style="text-align: center; text-decoration: underline;">Liste des Utilisateurs</h1>
-
-       <a href="{{ path('add_utilisateur') }}" class="btn" style="margin-bottom: 20px;">Ajouter un Utilisateur</a>
-
-
-
-    <table class="table" style="background-color: #f8d7da; border-collapse: collapse; width: 100%;">
-        <thead>
-            <tr>
-                <th style="border: 1px solid #000;">Nom</th>
-                <th style="border: 1px solid #000;">Email</th>
-                <th style="border: 1px solid #000;">Type</th>
-                <th style="border: 1px solid #000;">Niveau</th>
-                <th style="border: 1px solid #000;">Matière</th>
-                <th style="border: 1px solid #000;">Actions</th>
+<table class="table" style="background-color: white; border-collapse: collapse; width: 100%;">
+    <thead>
+        <tr style="background-color: #28a745; color: white;">
+            <th style="border: 1px solid #000; padding: 10px;">Nom</th>
+            <th style="border: 1px solid #000; padding: 10px;">Email</th>
+            <th style="border: 1px solid #000; padding: 10px;">Type</th>
+            <th style="border: 1px solid #000; padding: 10px;">Niveau</th>
+            <th style="border: 1px solid #000; padding: 10px;">Matière</th>
+            <th style="border: 1px solid #000; padding: 10px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr style="transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#f5c6cb'" onmouseout="this.style.backgroundColor='white'">
+                <td style="border: 1px solid #000; padding: 10px;">{{ utilisateur.nom }}</td>
+                <td style="border: 1px solid #000; padding: 10px;">{{ utilisateur.email }}</td>
+                <td style="border: 1px solid #000; padding: 10px;">{{ utilisateur.type }}</td>
+                <td style="border: 1px solid #000; padding: 10px;">{{ utilisateur.niveau }}</td>
+                <td style="border: 1px solid #000; padding: 10px;">{{ utilisateur.matiere }}</td>
+                <td style="border: 1px solid #000; padding: 10px;">
+                    <a href="{{ path('edit_utilisateur', {'id': utilisateur.id}) }}" style="background-color: #28a745; color: black; padding: 5px 10px; border-radius: 5px; text-decoration: none; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#e0a800'" onmouseout="this.style.backgroundColor='#ffc107'">Modifier</a>
+                    <a href="{{ path('delete_utilisateur', {'id': utilisateur.id}) }}" style="background-color: #dc3545; color: white; padding: 5px 10px; border-radius: 5px; text-decoration: none; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#c82333'" onmouseout="this.style.backgroundColor='#dc3545'" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            {% for utilisateur in utilisateurs %}
-                <tr>
-                    <td style="border: 1px solid #000;">{{ utilisateur.nom }}</td>
-                    <td style="border: 1px solid #000;">{{ utilisateur.email }}</td>
-                    <td style="border: 1px solid #000;">{{ utilisateur.type }}</td>
-                    <td style="border: 1px solid #000;">{{ utilisateur.niveau }}</td>
-                    <td style="border: 1px solid #000;">{{ utilisateur.matiere }}</td>
-                    <td style="border: 1px solid #000;">
-                        <a href="{{ path('edit_utilisateur', {'id': utilisateur.id}) }}" class="btn btn-warning">Modifier</a>
-                        <a href="{{ path('delete_utilisateur', {'id': utilisateur.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6" style="border: 1px solid #000;">Aucun utilisateur trouvé.</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>  
+        {% else %}
+            <tr>
+                <td colspan="6" style="border: 1px solid #000; padding: 10px; text-align: center;">Aucun utilisateur trouvé.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
