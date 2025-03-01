@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Chapitres</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn-ajouter {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+        .btn-ajouter:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Chapitres</h1>
+    <a href="{{ path('app_Addchapitre') }}" class="btn-ajouter">Ajouter un Chapitre</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nom Matière</th>
+            <th>Titre</th>
+            <th>Quiz</th>
+            <th>TD</th>
+            <th>Actions</th>
+        </tr>
+        {% for Chapitres in Chapitres %}
+        <tr>
+            <td>{{ Chapitres.id }}</td>
+            <td>{{ Chapitres.NomMatiere.nom }}</td>
+            <td>{{ Chapitres.titre }}</td>
+            <td>{{ Chapitres.quiz ? 'Oui' : 'Non' }}</td>
+            <td>{{ Chapitres.TD ? 'Oui' : 'Non' }}</td>
+            <td>
+                <a href="{{ path('app_editchapitre', {'id': Chapitres.id}) }}">Éditer</a> |
+                <a href="{{ path('app_deletechapitre', {'id': Chapitres.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

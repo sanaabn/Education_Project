@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('app_assignment_delete', {'id': assignment.id}) }}" onsubmit="return confirm('Are you sure?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ assignment.id) }}">
+    <button class="btn btn-danger {{ btn_class|default('') }}">
+        {% if include_icon|default(true) %}<i class="fas fa-trash"></i>{% endif %}
+        Delete
+    </button>
+</form>
