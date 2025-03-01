@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <h2 class="mb-4 text-center">Edit Assignment</h2>
+
+                    {{ form_start(form) }}
+                        <div class="mb-3">
+                            {{ form_label(form.title, 'Title') }}
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.description, 'Description') }}
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.dueDate, 'Due Date') }}
+                            {{ form_widget(form.dueDate, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+
+                        <!-- Bouton de soumission -->
+                        <button class="btn btn-primary w-100 mt-3">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    {{ form_end(form) }}
+
+                    <!-- Bouton "Back to list" -->
+                    <div class="text-center mt-3">
+                        <a href="{{ path('app_assignment_index') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to list
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

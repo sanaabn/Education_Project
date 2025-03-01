@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Assignment List</h1>
+
+        <a href="{{ path('app_assignment_new') }}" class="btn btn-success mb-3">Add Assignment</a>
+
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date limite</th>
+                    <th>Actions</th>
+                    <th>Grades</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                    <tr>
+                        <td>{{ assignment.title }}</td>
+                        <td>{{ assignment.description }}</td>
+                        <td>{{ assignment.dueDate ? assignment.dueDate|date('d/m/Y H:i') : 'N/A' }}</td>
+                        <td>
+                            <a href="{{ path('app_assignment_edit', {'id': assignment.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <form method="post" action="{{ path('app_assignment_delete', {'id': assignment.id}) }}" onsubmit="return confirm('Are you sure?');" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ assignment.id) }}">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            {% for grade in assignment.grades %}
+                                <div class="mb-1">
+                                    <strong>{{ grade.student.name }}</strong> - 
+                                    Score: <span class="badge bg-warning text-dark">{{ grade.score }}</span>
+                                    <form method="post" action="{{ path('app_grade_delete', {'id': grade.id}) }}" onsubmit="return confirm('Are you sure?');" style="display:inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ grade.id) }}">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            {% endfor %}
+                            <a href="{{ path('app_grade_new', {'id': assignment.id}) }}" class="btn btn-info btn-sm mt-1">Add Grade</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
