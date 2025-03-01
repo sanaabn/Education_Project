@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Éditer une Matière</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Éditer une Matière</h1>
+        {{ form_start(e) }}
+            <div>
+                {{ form_label(e.nom) }}
+                {{ form_widget(e.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div>
+                {{ form_label(e.coeficient) }}
+                {{ form_widget(e.coeficient, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div>
+                {{ form_label(e.nombreDesHeures) }}
+                {{ form_widget(e.nombreDesHeures, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div>
+                {{ form_label(e.modeDevaluation) }}
+                {{ form_widget(e.modeDevaluation, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        {{ form_end(e) }}
+    </div>
+</body>
+</html>
