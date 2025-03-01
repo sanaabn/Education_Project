@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liste des Salles</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">Liste des Salles</h1>
+ <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-primary">Les Salles</h1>
+            <div>
+                <a href="{{ path('app_add') }}" class="btn btn-success">➕ Ajouter une salle</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Capacité</th>
+                        <th>Type</th>
+                        <th>Disponibilité</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for salle in Salles %}
+                    <tr>
+                        <td>{{ salle.id }}</td>
+                        <td>{{ salle.nom }}</td>
+                        <td>{{ salle.capacite }}</td>
+                        <td>{{ salle.type }}</td>
+                        <td>
+                            {% if salle.disponibilite %}
+                                <span class="badge bg-success">Disponible ✅</span>
+                            {% else %}
+                                <span class="badge bg-danger">Indisponible ❌</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_edit', { 'id': salle.id }) }}" class="btn btn-sm btn-warning">✏️ Modifier</a>
+                            <a href="{{ path('app_delete', { 'id': salle.id }) }}" class="btn btn-sm btn-danger">🗑️ Supprimer</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-muted">Aucune salle disponible.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
