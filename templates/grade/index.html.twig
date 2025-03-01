@@ -1,0 +1,30 @@
+{# templates/grade/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Notes pour {{ assignment.title }}{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">📊 Notes pour "{{ assignment.title }}"</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            {% if grades|length > 0 %}
+                <div class="row fw-bold mb-2">
+                    <div class="col">Note</div>
+                    <div class="col">Commentaire</div>
+                </div>
+                {% for grade in grades %}
+                <div class="row border-bottom py-2">
+                    <div class="col">{{ grade.score|number_format(2) }}/20</div>
+                    <div class="col">{{ grade.feedback|default('Aucun commentaire') }}</div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center text-muted">Aucune note enregistrée</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <a href="{{ path('app_grade_new', {'id': assignment.id}) }}" class="btn btn-success">➕ Ajouter une note</a>
+    <a href="{{ path('app_assignment_index') }}" class="btn btn-outline-secondary">← Retour</a>
+{% endblock %}
